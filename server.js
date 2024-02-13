@@ -23,7 +23,7 @@ const db = mysql.createConnection({
 // SingUp API
 
 app.post('/signup', (req, res) => {
-    const sql = "INSERT INTO authentication (`name`, `email`, `password`) VALUES (?,?,?)"; // Fixed the SQL query
+    const sql = "INSERT INTO Authentication (`name`, `email`, `password`) VALUES (?,?,?)"; // Fixed the SQL query
     const values = [
         req.body.name,
         req.body.email,
@@ -43,7 +43,7 @@ app.post('/signup', (req, res) => {
 // Login API
 
 app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM authentication where `email` = ? AND `password` = ?"; // Fixed the SQL query
+    const sql = "SELECT * FROM Authentication where `email` = ? AND `password` = ?"; // Fixed the SQL query
    
     db.query(sql, [ req.body.email, req.body.password], (err, data) => {
         if (err) {
@@ -65,7 +65,7 @@ app.post('/login', (req, res) => {
 
 
 app.get('/login', (req, res) => {
-    const sql = "SELECT * FROM authentication";
+    const sql = "SELECT * FROM Authentication";
     db.query(sql, (err, data) => {
         if (err) {
             return res.json("error");
@@ -82,7 +82,7 @@ app.get('/login', (req, res) => {
 app.put('/login/:id', (req, res) => {
     const userId = req.params.id;
     const { name, email, password,age,contact,dob,address, } = req.body;
-    const sql = "UPDATE authentication SET name=?, email=?, password=?, age=?, contact=?, dob=?, address=? WHERE id=?";
+    const sql = "UPDATE Authentication SET name=?, email=?, password=?, age=?, contact=?, dob=?, address=? WHERE id=?";
     db.query(sql, [name, email, password,age,contact,dob,address, userId], (err, result) => {
         if (err) {
             return res.status(500).json({ error: "Failed to update user information" });
@@ -97,7 +97,7 @@ app.put('/login/:id', (req, res) => {
 
 
 
-const PORT = 8081;
+const PORT = 3306;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 
