@@ -13,10 +13,10 @@ app.use(cors()); // Enable CORS
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "gingermedia"
+    host: "sql6.freesqldatabase.com",
+    user: "sql6683801",
+    password: "tZ5MzTe5fB",
+    database: "sql6683801"
 });
 
 
